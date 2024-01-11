@@ -4,4 +4,5 @@ export interface Icourses {
   actualPrice: string;
   discountPercentage: string;
   tags: string[];
+  quantity: number;
 }

@@ -1,1 +1,27 @@
-<p>cart works!</p>
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div style="height: fit-content" class="col-12 col-md-3 mb-4">
+      <p class="border border-2 rounded-3 p-3">Total Price : 1200 $</p>
+    </div>
+    <div class="col-sm-12 col-md-9 d-flex">
+      <div class="col-sm-12 col-md-12">
+        <div class="">
+          <div
+            *ngFor="let cartItem of cartItems"
+            class="list-group-item list-group-item-action mb-3 border border-2 rounded-3 p-4"
+          >
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1 fw-bolder">{{ cartItem.courseName }}</h5>
+            </div>
+            <p class="mb-1">
+              Author : <span class="fw-medium"> {{ cartItem.author }}</span>
+            </p>
+            <p class="lead fw-bold">
+              {{ cartItem.actualPrice.slice(1) | currency }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

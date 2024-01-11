@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top shadow">
   <div class="container my-2">
-    <a class="navbar-brand" routerLink="">Logo</a>
+    <a class="navbar-brand fw-bolder fs-4" routerLink="">Logo</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -48,7 +48,7 @@
             [routerLinkActive]="'text-primary'"
             [routerLinkActiveOptions]="{ exact: true }"
             routerLink="cart"
-            >Cart</a
+            >Cart : {{ cartLength }}</a
           >
         </li>
       </ul>

@@ -12,6 +12,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { CoursesListComponent } from './components/courses-list/courses-list.component';
 import { BannerComponent } from './components/banner/banner.component';
 import { CourseItemComponent } from './components/course-item/course-item.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AddToCartButtonComponent } from './components/add-to-cart-button/add-to-cart-button.component';
 
 @NgModule({
   declarations: [
@@ -24,11 +26,13 @@ import { CourseItemComponent } from './components/course-item/course-item.compon
     NotFoundComponent,
     CoursesListComponent,
     BannerComponent,
-    CourseItemComponent
+    CourseItemComponent,
+    AddToCartButtonComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

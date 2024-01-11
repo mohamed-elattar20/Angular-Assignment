@@ -1,0 +1,6 @@
+.onhover {
+  transition: 0.5s all;
+}
+.onhover:hover {
+  transform: scale(1.03);
+}

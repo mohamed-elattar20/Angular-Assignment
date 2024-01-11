@@ -1,14 +1,40 @@
-<div class="card">
+<div class="card onhover">
   <h5 class="card-header p-3">{{ courseData.courseName }}</h5>
   <div class="card-body">
     <h5 class="card-title">{{ courseData.author }}</h5>
-    <div class="d-flex mt-3 justify-content-between">
-      <p class="card-text">price : {{ courseData.actualPrice }}</p>
-      <p class="card-text ms-5">
+    <div class="d-flex mt-3 mb-2 justify-content-between align-items-center">
+      <p class="card-text my-2">
+        price :
+        <span
+          [ngClass]="{
+            'text-decoration-line-through':
+              courseData.discountPercentage !== '0',
+            'fw-bold': courseData.discountPercentage === '0'
+          }"
+        >
+          {{ courseData.actualPrice.slice(1) | currency }}</span
+        >
+        <span
+          *ngIf="courseData.discountPercentage !== '0'"
+          class="fw-bold ms-2"
+        >
+          {{ discountPrice.toFixed(2) | currency }}</span
+        >
+      </p>
+      <p
+        *ngIf="courseData.discountPercentage !== '0'"
+        class="card-text ms-5 fs-4"
+      >
         {{ courseData.discountPercentage }}
       </p>
     </div>
-    <a href="#" class="btn btn-primary">Add to Cart</a>
-    <a href="#" class="btn btn-primary ms-1">Go somewhere</a>
+    <div class="d-flex justify-content-between align-items-center mt-4">
+      <app-add-to-cart-button
+        [courseItem]="courseData"
+      ></app-add-to-cart-button>
+      <button title="wishlist" class="btn ms-1 fs-4">
+        <fa-icon [icon]="faStar"></fa-icon>
+      </button>
+    </div>
   </div>
 </div>
