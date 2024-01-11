@@ -9,6 +9,7 @@ import { WishListComponent } from './components/wish-list/wish-list.component';
 import { CartComponent } from './components/cart/cart.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { CoursesListComponent } from './components/courses-list/courses-list.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     WishListComponent,
     CartComponent,
     DashboardComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    CoursesListComponent
   ],
   imports: [
     BrowserModule,
