@@ -10,6 +10,8 @@ import { CartComponent } from './components/cart/cart.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { CoursesListComponent } from './components/courses-list/courses-list.component';
+import { BannerComponent } from './components/banner/banner.component';
+import { CourseItemComponent } from './components/course-item/course-item.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { CoursesListComponent } from './components/courses-list/courses-list.com
     CartComponent,
     DashboardComponent,
     NotFoundComponent,
-    CoursesListComponent
+    CoursesListComponent,
+    BannerComponent,
+    CourseItemComponent
   ],
   imports: [
     BrowserModule,

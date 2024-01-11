@@ -8,12 +8,15 @@ import { CoursesService } from 'src/app/services/courses.service';
   styleUrls: ['./courses-list.component.css'],
 })
 export class CoursesListComponent implements OnInit {
-  courses!: Icourses;
+  courses: Icourses[] = [];
   constructor(private coursesService: CoursesService) {}
 
   ngOnInit(): void {
-    this.coursesService
-      .getCourses()
-      .subscribe((data: Icourses) => (this.courses = data));
+    this.coursesService.getCourses().subscribe((data: Icourses[]) => {
+      // console.log(typeof data);
+      console.log(data);
+
+      this.courses = data;
+    });
   }
 }

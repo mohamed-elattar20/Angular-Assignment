@@ -6,11 +6,11 @@ import { Icourses } from '../interfaces/icourses';
   providedIn: 'root',
 })
 export class CoursesService {
+  constructor() {}
+
   courses: any = new BehaviorSubject<any>(Array.from(courses));
 
   getCourses() {
     return this.courses.asObservable();
   }
-
-  constructor() {}
 }
