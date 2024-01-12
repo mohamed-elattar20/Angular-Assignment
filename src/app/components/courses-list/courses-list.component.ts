@@ -9,6 +9,8 @@ import { CoursesService } from 'src/app/services/courses.service';
 })
 export class CoursesListComponent implements OnInit {
   courses: Icourses[] = [];
+  searchInput: string = '';
+  searchedCourses: Icourses[] = [];
   constructor(private coursesService: CoursesService) {}
 
   ngOnInit(): void {
@@ -18,5 +20,11 @@ export class CoursesListComponent implements OnInit {
 
       this.courses = data;
     });
+  }
+
+  handleSearch() {
+    this.courses = this.courses.filter((course) =>
+      course.courseName.includes(this.searchInput)
+    );
   }
 }

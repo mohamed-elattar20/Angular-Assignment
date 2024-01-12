@@ -1,0 +1,29 @@
+<div class="d-flex w-100 justify-content-between">
+  <h5 class="mb-1 fw-bolder">{{ cartItem.courseName }}</h5>
+</div>
+<p class="mb-1">
+  Author : <span class="fw-medium"> {{ cartItem.author }}</span>
+</p>
+<div class="d-flex mt-3 mb-2 justify-content-between align-items-center">
+  <p class="card-text my-2">
+    price :
+    <span
+      [ngClass]="{
+        'text-decoration-line-through': cartItem.discountPercentage !== '0',
+        'fw-bold': cartItem.discountPercentage === '0'
+      }"
+    >
+      {{ cartItem.actualPrice.slice(1) | currency }}</span
+    >
+    <span *ngIf="cartItem.discountPercentage !== '0'" class="fw-bold ms-2">
+      {{ discountPrice.toFixed(2) | currency }}</span
+    >
+  </p>
+  <p *ngIf="cartItem.discountPercentage !== '0'" class="card-text ms-5 fs-4">
+    {{ cartItem.discountPercentage }}
+  </p>
+</div>
+<div class="d-flex">
+  <button class="btn btn-danger">Delete From Cart</button>
+  <button class="btn btn-secondary mx-2">Remove to wish list</button>
+</div>
