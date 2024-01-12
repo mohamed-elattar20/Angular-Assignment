@@ -18,8 +18,14 @@ export class CoursesListComponent implements OnInit {
 
   ngOnInit(): void {
     this.coursesService.getCourses().subscribe((data: Icourses[]) => {
-      console.log(data);
+      // console.log(
+      //   data.map((course) => ({
+      //     ...course,
+      //     id: crypto.randomUUID(),
+      //   }))
+      // );
       this.courses = data;
+      console.log(this.courses);
     });
   }
 

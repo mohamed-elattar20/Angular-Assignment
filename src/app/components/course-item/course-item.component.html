@@ -36,9 +36,16 @@
       >
     </div>
     <div class="d-flex justify-content-between align-items-center mt-4">
-      <app-add-to-cart-button
-        [courseItem]="courseData"
-      ></app-add-to-cart-button>
+      <div class="d-flex">
+        <app-add-to-cart-button
+          [courseItem]="courseData"
+        ></app-add-to-cart-button>
+        <a
+          [routerLink]="['/course-details', courseData.id]"
+          class="btn btn-info ms-2"
+          >Show Details</a
+        >
+      </div>
       <button title="wishlist" class="btn ms-1 fs-4">
         <fa-icon [icon]="faStar"></fa-icon>
       </button>

@@ -1,0 +1,27 @@
+<app-banner></app-banner>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="card my-3 w-100">
+        <div class="card-body d-flex justify-content-between">
+          <div>
+            <h5 class="card-title">
+              {{ courseObj?.courseName || "Not Found" }}
+            </h5>
+            <p class="card-text fw-bolder">
+              {{ courseObj?.author || "Not Found" }}
+            </p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+          <div>
+            <span
+              *ngFor="let tag of courseObj?.tags"
+              class="rounded-3 bg-secondary p-2 text-light mx-1"
+              >{{ tag }}</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
