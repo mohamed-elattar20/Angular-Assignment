@@ -28,6 +28,13 @@
         {{ courseData.discountPercentage }}
       </p>
     </div>
+    <div>
+      <span
+        *ngFor="let tag of courseData.tags"
+        class="rounded-3 bg-secondary p-2 text-light mx-1"
+        >{{ tag }}</span
+      >
+    </div>
     <div class="d-flex justify-content-between align-items-center mt-4">
       <app-add-to-cart-button
         [courseItem]="courseData"

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -41,15 +41,9 @@ import { HotToastModule } from '@ngneat/hot-toast';
     FormsModule,
     HotToastModule.forRoot(),
   ],
-  providers: [],
+  providers: [provideHotToastConfig()],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
 
 import { provideHotToastConfig } from '@ngneat/hot-toast';
-
-bootstrapApplication(AppComponent, {
-  providers: [
-    provideHotToastConfig(), // @ngneat/hot-toast providers
-  ],
-});

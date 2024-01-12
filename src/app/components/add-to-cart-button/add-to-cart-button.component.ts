@@ -33,7 +33,7 @@ export class AddToCartButtonComponent implements OnInit {
     );
     if (foundedCourse) {
       // foundedCourse.quantity += 1;
-      this.toast.warning('Item is already in the Cart', {
+      this.toast.warning('Already exists in the cart', {
         duration: 2000,
       });
       // console.log(this.cartItems);
@@ -42,7 +42,7 @@ export class AddToCartButtonComponent implements OnInit {
       console.log(this.cartItems);
 
       this.cartService.setCartItems(this.cartItems);
-      this.toast.success('Item Added to Cart Successfully', {
+      this.toast.success('Course successfully added in the cart', {
         duration: 2000,
       });
     }
