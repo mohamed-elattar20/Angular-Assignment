@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Icourses } from 'src/app/interfaces/icourses';
 import { WishListService } from 'src/app/services/wish-list.service';
 
@@ -9,10 +10,17 @@ import { WishListService } from 'src/app/services/wish-list.service';
 })
 export class WishListComponent implements OnInit {
   coursesMap!: Map<string, Icourses>;
-  constructor(private wishListService: WishListService) {}
+  constructor(
+    private wishListService: WishListService,
+    private router: Router
+  ) {}
   ngOnInit(): void {
     this.wishListService
       .getCoursesArray()
       .subscribe((data) => (this.coursesMap = data));
+  }
+
+  navigateToHome() {
+    this.router.navigate(['/']);
   }
 }

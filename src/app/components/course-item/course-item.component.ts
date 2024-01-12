@@ -13,6 +13,8 @@ export class CourseItemComponent implements OnInit {
   ngOnInit() {
     // console.log(this.courseData.discountPercentage.slice(0, 2));
 
+    // console.log(Number(this.courseData.discountPercentage.slice(0, 2)));
+
     this.discountPrice =
       Number(this.courseData.actualPrice.slice(1)) -
       Number(this.courseData.actualPrice.slice(1)) *

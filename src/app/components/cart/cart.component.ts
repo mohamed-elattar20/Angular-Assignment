@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Icourses } from 'src/app/interfaces/icourses';
 import { CartService } from 'src/app/services/cart.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent } from '../modal/modal.component';
+import { Router } from '@angular/router';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
   selector: 'app-cart',
@@ -8,12 +12,112 @@ import { CartService } from 'src/app/services/cart.service';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
+  totalPriceArr!: any;
   cartItems!: Icourses[];
-  discountPrice!: number;
-  constructor(private cartService: CartService) {}
+  totalPrice: number = 0;
+  constructor(
+    private cartService: CartService,
+    private modalService: NgbModal,
+    private router: Router,
+    private toast: HotToastService
+  ) {}
+  ngDoChanges(): void {
+    this.totalPriceArr = this.cartItems.map((cartItem: any) => {
+      return {
+        actualPrice: Number(cartItem.actualPrice.slice(1)),
+        discount: Number(cartItem.discountPercentage.slice(0, 2)) / 100,
+        priceAfterDiscount:
+          Number(cartItem.actualPrice.slice(1)) -
+          Number(cartItem.actualPrice.slice(1)) *
+            (Number(cartItem.discountPercentage.slice(0, 2)) / 100),
+      };
+    });
+
+    this.totalPriceArr.forEach((course: any) => {
+      this.totalPrice += course.priceAfterDiscount;
+    });
+
+    console.log(this.totalPrice);
+    console.log(this.totalPriceArr);
+  }
+
+  ngOnChanges() {
+    this.totalPriceArr = this.cartItems.map((cartItem: any) => {
+      return {
+        actualPrice: Number(cartItem.actualPrice.slice(1)),
+        discount: Number(cartItem.discountPercentage.slice(0, 2)) / 100,
+        priceAfterDiscount:
+          Number(cartItem.actualPrice.slice(1)) -
+          Number(cartItem.actualPrice.slice(1)) *
+            (Number(cartItem.discountPercentage.slice(0, 2)) / 100),
+      };
+    });
+
+    this.totalPriceArr.forEach((course: any) => {
+      this.totalPrice += course.priceAfterDiscount;
+    });
+  }
+
   ngOnInit(): void {
     this.cartService
       .getCartItems()
       .subscribe((data) => (this.cartItems = data));
+
+    this.totalPriceArr = this.cartItems.map((cartItem: any) => {
+      return {
+        actualPrice: Number(cartItem.actualPrice.slice(1)),
+        discount: Number(cartItem.discountPercentage.slice(0, 2)) / 100,
+        priceAfterDiscount:
+          Number(cartItem.actualPrice.slice(1)) -
+          Number(cartItem.actualPrice.slice(1)) *
+            (Number(cartItem.discountPercentage.slice(0, 2)) / 100),
+      };
+    });
+
+    this.totalPriceArr.forEach((course: any) => {
+      this.totalPrice += course.priceAfterDiscount;
+    });
+
+    console.log(this.totalPrice);
+    console.log(this.totalPriceArr);
+  }
+
+  // recieveCartItemId(id: string) {
+  //   this.totalPriceArr = this.totalPriceArr.filter(
+  //     (course: any) => course.id === id
+  //   );
+  //   // .map((cartItem: any) => {
+  //   //   return {
+  //   //     actualPrice: Number(cartItem.actualPrice.slice(1)),
+  //   //     discount: Number(cartItem.discountPercentage.slice(0, 2)) / 100,
+  //   //     priceAfterDiscount:
+  //   //       Number(cartItem.actualPrice.slice(1)) -
+  //   //       Number(cartItem.actualPrice.slice(1)) *
+  //   //         (Number(cartItem.discountPercentage.slice(0, 2)) / 100),
+  //   //   };
+  //   // });
+
+  //   console.log(this.totalPriceArr);
+
+  //   // this.totalPriceArr.forEach((course: any) => {
+  //   this.totalPrice =
+  //     this.totalPrice - this.totalPriceArr[0].priceAfterDiscount;
+  //   // });
+  //   console.log(this.totalPrice);
+  // }
+
+  clearCart() {
+    const modalRef = this.modalService.open(ModalComponent);
+    modalRef.result.then((result) => {
+      if (result === 'Yes') {
+        this.toast.success('Your Order Has been submitted Successfully', {
+          duration: 3000,
+        });
+        this.cartService.setCartItems([]);
+        this.router.navigate(['/']);
+      } else {
+        console.log(`HEllo`);
+      }
+    });
   }
 }

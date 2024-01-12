@@ -34,9 +34,12 @@ export class AddToCartButtonComponent implements OnInit {
       );
       if (foundedCourse) {
         // foundedCourse.quantity += 1;
-        this.toast.warning('Already exists in the cart', {
-          duration: 2000,
-        });
+        this.toast.warning(
+          `${foundedCourse.courseName} Already exists in the cart`,
+          {
+            duration: 2000,
+          }
+        );
         // console.log(this.cartItems);
       } else {
         this.cartItems.push({ ...courseItemData });

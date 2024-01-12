@@ -7,13 +7,13 @@ import { Icourses } from '../interfaces/icourses';
 })
 export class CartService {
   constructor() {}
-  private cartArray = new BehaviorSubject([]);
+  private cartArray = new BehaviorSubject<Array<Icourses>>([]);
 
   getCartItems() {
     return this.cartArray.asObservable();
   }
 
-  setCartItems(newCartArr: []) {
+  setCartItems(newCartArr: Icourses[]) {
     this.cartArray.next(newCartArr);
   }
 }

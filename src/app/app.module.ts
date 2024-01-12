@@ -35,6 +35,7 @@ import { HotToastModule } from '@ngneat/hot-toast';
     CartItemComponent,
     CourseDetailsComponent,
     AddToWishListButtonComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +43,7 @@ import { HotToastModule } from '@ngneat/hot-toast';
     FontAwesomeModule,
     FormsModule,
     HotToastModule.forRoot(),
+    NgbModule,
   ],
   providers: [provideHotToastConfig()],
   bootstrap: [AppComponent],
@@ -51,3 +53,5 @@ export class AppModule {}
 import { provideHotToastConfig } from '@ngneat/hot-toast';
 import { CourseDetailsComponent } from './components/course-details/course-details.component';
 import { AddToWishListButtonComponent } from './components/add-to-wish-list-button/add-to-wish-list-button.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent } from './components/modal/modal.component';

@@ -26,12 +26,24 @@
         </li>
         <li class="nav-item">
           <a
-            class="nav-link"
             [routerLinkActive]="'text-primary'"
             [routerLinkActiveOptions]="{ exact: true }"
             routerLink="wish-list"
-            >Wish List</a
+            type="button"
+            class="nav-link btn position-relative"
           >
+            Wish List
+            <span
+              *ngIf="WishList.size"
+              class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+            >
+              {{ WishList.size }}
+              <!--  -->
+              <!--  -->
+              <!--  -->
+              <span class="visually-hidden">unread messages</span>
+            </span>
+          </a>
         </li>
         <li class="nav-item">
           <a
@@ -44,12 +56,21 @@
         </li>
         <li class="nav-item">
           <a
-            class="nav-link"
             [routerLinkActive]="'text-primary'"
             [routerLinkActiveOptions]="{ exact: true }"
             routerLink="cart"
-            >Cart : {{ cartLength }}</a
+            type="button"
+            class="nav-link btn position-relative"
           >
+            Cart
+            <span
+              *ngIf="cartLength"
+              class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+            >
+              {{ cartLength }}
+              <span class="visually-hidden">unread messages</span>
+            </span>
+          </a>
         </li>
       </ul>
     </div>
