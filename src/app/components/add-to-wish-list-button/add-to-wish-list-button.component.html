@@ -1,3 +1,4 @@
-<button title="wishlist" class="btn ms-1 fs-4">
-  <fa-icon [icon]="faStar"></fa-icon>
+<button (click)="toggleWishList()" title="wishlist" class="btn ms-1 fs-4">
+  <fa-icon *ngIf="!favorite" class="fs-4 star" [icon]="faStar"></fa-icon>
+  <fa-icon *ngIf="favorite" class="fs-4 text-warning" [icon]="faStar"></fa-icon>
 </button>

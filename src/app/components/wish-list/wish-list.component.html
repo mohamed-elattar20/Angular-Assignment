@@ -1,1 +1,10 @@
-<p>wish-list works!</p>
+<div class="container my-5">
+  <div class="row g-3">
+    <div
+      *ngFor="let course of coursesMap.values()"
+      class="col-sm-12 col-md-4 col-lg-6"
+    >
+      <app-course-item [courseData]="course"></app-course-item>
+    </div>
+  </div>
+</div>
