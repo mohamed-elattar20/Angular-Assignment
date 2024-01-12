@@ -8,7 +8,12 @@ import { Icourses } from '../interfaces/icourses';
 export class CoursesService {
   constructor() {}
 
-  courses: any = new BehaviorSubject<any>(Array.from(courses));
+  courses = new BehaviorSubject<any>(
+    Array.from(courses).map((course) => ({
+      ...course,
+      id: crypto.randomUUID(),
+    }))
+  );
 
   getCourses() {
     return this.courses.asObservable();

@@ -1,4 +1,5 @@
 export interface Icourses {
+  id: string;
   courseName: string;
   author: string;
   actualPrice: string;

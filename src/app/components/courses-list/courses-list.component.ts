@@ -11,27 +11,22 @@ export class CoursesListComponent implements OnInit {
   courses: Icourses[] = [];
   searchInput: string = '';
   sortInput: string;
-  // searchedCourses: Icourses[] = [];
+  finalCoursesArr: Icourses[] = [];
   constructor(private coursesService: CoursesService) {
     this.sortInput = 'asc';
   }
 
   ngOnInit(): void {
     this.coursesService.getCourses().subscribe((data: Icourses[]) => {
-      // console.log(
-      //   data.map((course) => ({
-      //     ...course,
-      //     id: crypto.randomUUID(),
-      //   }))
-      // );
       this.courses = data;
+      this.finalCoursesArr = this.courses;
       console.log(this.courses);
     });
   }
 
   handleSearch() {
     if (this.searchInput) {
-      this.courses = this.courses.filter(
+      this.finalCoursesArr = this.courses.filter(
         (course) =>
           course.courseName.includes(this.searchInput) ||
           course.author.includes(this.searchInput) ||
@@ -40,15 +35,20 @@ export class CoursesListComponent implements OnInit {
     }
   }
 
+  resetCoursesArr() {
+    this.finalCoursesArr = this.courses;
+    console.log(this.finalCoursesArr);
+  }
+
   handleSort() {
     if (this.sortInput === 'desc') {
-      this.courses.sort(
+      this.finalCoursesArr.sort(
         (a, b) =>
           Number(a.actualPrice.slice(1)) - Number(b.actualPrice.slice(1))
       );
     }
     if (this.sortInput === 'asc') {
-      this.courses.sort(
+      this.finalCoursesArr.sort(
         (a, b) =>
           Number(b.actualPrice.slice(1)) - Number(a.actualPrice.slice(1))
       );

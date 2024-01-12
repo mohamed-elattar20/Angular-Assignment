@@ -33,6 +33,8 @@ import { HotToastModule } from '@ngneat/hot-toast';
     CourseItemComponent,
     AddToCartButtonComponent,
     CartItemComponent,
+    CourseDetailsComponent,
+    AddToWishListButtonComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,3 +49,5 @@ import { HotToastModule } from '@ngneat/hot-toast';
 export class AppModule {}
 
 import { provideHotToastConfig } from '@ngneat/hot-toast';
+import { CourseDetailsComponent } from './components/course-details/course-details.component';
+import { AddToWishListButtonComponent } from './components/add-to-wish-list-button/add-to-wish-list-button.component';

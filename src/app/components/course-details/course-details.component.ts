@@ -9,15 +9,17 @@ import { CoursesService } from 'src/app/services/courses.service';
   styleUrls: ['./course-details.component.css'],
 })
 export class CourseDetailsComponent implements OnInit {
+  discountPrice!: number;
   courseId!: number;
-  courseObj: Icourses | undefined = {} as Icourses;
+  courseObj: Icourses = {} as Icourses;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private coursesService: CoursesService
-  ) {}
-  ngOnInit(): void {
+  ) {
     this.courseId = this.activatedRoute?.snapshot?.params?.['id'];
+  }
+  ngOnInit(): void {
     // console.log(this.courseId);
     console.log(this.courseObj);
 
@@ -26,5 +28,9 @@ export class CourseDetailsComponent implements OnInit {
       this.courseObj = data.find((course: any) => course.id === this.courseId);
     });
     console.log(this.courseObj);
+    this.discountPrice =
+      Number(this.courseObj.actualPrice.slice(1)) -
+      Number(this.courseObj.actualPrice.slice(1)) *
+        (Number(this.courseObj.discountPercentage.slice(0, 2)) / 100);
   }
 }

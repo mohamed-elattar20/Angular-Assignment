@@ -28,24 +28,26 @@ export class AddToCartButtonComponent implements OnInit {
 
   addToCart(courseItemData: Icourses) {
     // console.log(courseItemData);
-    const foundedCourse: any = this.cartItems.find(
-      (course: Icourses) => course.courseName === courseItemData.courseName
-    );
-    if (foundedCourse) {
-      // foundedCourse.quantity += 1;
-      this.toast.warning('Already exists in the cart', {
-        duration: 2000,
-      });
-      // console.log(this.cartItems);
-    } else {
-      this.cartItems.push({ ...courseItemData });
-      console.log(this.cartItems);
+    if (courseItemData) {
+      const foundedCourse: any = this.cartItems.find(
+        (course: Icourses) => course.courseName === courseItemData.courseName
+      );
+      if (foundedCourse) {
+        // foundedCourse.quantity += 1;
+        this.toast.warning('Already exists in the cart', {
+          duration: 2000,
+        });
+        // console.log(this.cartItems);
+      } else {
+        this.cartItems.push({ ...courseItemData });
+        console.log(this.cartItems);
 
+        this.cartService.setCartItems(this.cartItems);
+        this.toast.success('Course successfully added in the cart', {
+          duration: 2000,
+        });
+      }
       this.cartService.setCartItems(this.cartItems);
-      this.toast.success('Course successfully added in the cart', {
-        duration: 2000,
-      });
     }
-    this.cartService.setCartItems(this.cartItems);
   }
 }

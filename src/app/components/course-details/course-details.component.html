@@ -6,12 +6,42 @@
         <div class="card-body d-flex justify-content-between">
           <div>
             <h5 class="card-title">
-              {{ courseObj?.courseName || "Not Found" }}
+              {{ courseObj.courseName || "Not Found" }}
             </h5>
             <p class="card-text fw-bolder">
-              {{ courseObj?.author || "Not Found" }}
+              {{ courseObj.author || "Not Found" }}
             </p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <div
+              class="d-flex mt-3 mb-2 justify-content-between align-items-center"
+            >
+              <p class="card-text my-2">
+                price :
+                <span
+                  [ngClass]="{
+                    'text-decoration-line-through':
+                      courseObj.discountPercentage !== '0',
+                    'fw-bold': courseObj.discountPercentage === '0'
+                  }"
+                >
+                  {{ courseObj.actualPrice.slice(1) | currency }}</span
+                >
+                <span
+                  *ngIf="courseObj.discountPercentage !== '0'"
+                  class="fw-bold ms-2"
+                >
+                  {{ discountPrice.toFixed(2) | currency }}</span
+                >
+              </p>
+              <p
+                *ngIf="courseObj.discountPercentage !== '0'"
+                class="card-text ms-5 fs-4"
+              >
+                {{ courseObj.discountPercentage }}
+              </p>
+            </div>
+            <app-add-to-cart-button
+              [courseItem]="courseObj"
+            ></app-add-to-cart-button>
           </div>
           <div>
             <span
