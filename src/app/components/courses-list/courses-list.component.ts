@@ -23,8 +23,11 @@ export class CoursesListComponent implements OnInit {
   }
 
   handleSearch() {
-    this.courses = this.courses.filter((course) =>
-      course.courseName.includes(this.searchInput)
+    this.courses = this.courses.filter(
+      (course) =>
+        course.courseName.includes(this.searchInput) ||
+        course.author.includes(this.searchInput) ||
+        course.tags.includes(this.searchInput)
     );
   }
 }

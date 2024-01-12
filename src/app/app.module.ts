@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +17,8 @@ import { AddToCartButtonComponent } from './components/add-to-cart-button/add-to
 import { CartItemComponent } from './components/cart-item/cart-item.component';
 import { FormsModule } from '@angular/forms';
 
+// Toaster
+import { HotToastModule } from '@ngneat/hot-toast';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,8 +34,22 @@ import { FormsModule } from '@angular/forms';
     AddToCartButtonComponent,
     CartItemComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FontAwesomeModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FontAwesomeModule,
+    FormsModule,
+    HotToastModule.forRoot(),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+
+import { provideHotToastConfig } from '@ngneat/hot-toast';
+
+bootstrapApplication(AppComponent, {
+  providers: [
+    provideHotToastConfig(), // @ngneat/hot-toast providers
+  ],
+});
