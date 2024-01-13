@@ -44,14 +44,38 @@ export class CoursesListComponent implements OnInit {
     if (this.sortInput === 'desc') {
       this.finalCoursesArr.sort(
         (a, b) =>
-          Number(a.actualPrice.slice(1)) - Number(b.actualPrice.slice(1))
+          Number(a.actualPrice.slice(1)) -
+          Number(a.actualPrice.slice(1)) *
+            (Number(a.discountPercentage.slice(0, 2)) / 100) -
+          (Number(b.actualPrice.slice(1)) -
+            Number(b.actualPrice.slice(1)) *
+              (Number(b.discountPercentage.slice(0, 2)) / 100))
       );
     }
     if (this.sortInput === 'asc') {
       this.finalCoursesArr.sort(
         (a, b) =>
-          Number(b.actualPrice.slice(1)) - Number(a.actualPrice.slice(1))
+          Number(b.actualPrice.slice(1)) -
+          Number(b.actualPrice.slice(1)) *
+            (Number(b.discountPercentage.slice(0, 2)) / 100) -
+          Number(a.actualPrice.slice(1)) -
+          Number(a.actualPrice.slice(1)) *
+            (Number(a.discountPercentage.slice(0, 2)) / 100)
       );
     }
   }
+  // handleSort() {
+  //   if (this.sortInput === 'desc') {
+  //     this.finalCoursesArr.sort(
+  //       (a, b) =>
+  //         Number(a.actualPrice.slice(1)) - Number(b.actualPrice.slice(1))
+  //     );
+  //   }
+  //   if (this.sortInput === 'asc') {
+  //     this.finalCoursesArr.sort(
+  //       (a, b) =>
+  //         Number(b.actualPrice.slice(1)) - Number(a.actualPrice.slice(1))
+  //     );
+  //   }
+  // }
 }
