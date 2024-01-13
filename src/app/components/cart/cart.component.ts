@@ -12,7 +12,11 @@ import { HotToastService } from '@ngneat/hot-toast';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
-  totalPriceArr!: any;
+  totalPriceArr!: {
+    actualPrice: number;
+    discount: number;
+    priceAfterDiscount: number;
+  }[];
   cartItems!: Icourses[];
   totalPrice: number = 0;
   totalSaving: number = 0;
@@ -23,26 +27,6 @@ export class CartComponent implements OnInit {
     private router: Router,
     private toast: HotToastService
   ) {}
-
-  // ngDoChanges(): void {
-  //   this.totalPriceArr = this.cartItems.map((cartItem: any) => {
-  //     return {
-  //       actualPrice: Number(cartItem.actualPrice.slice(1)),
-  //       discount: Number(cartItem.discountPercentage.slice(0, 2)) / 100,
-  //       priceAfterDiscount:
-  //         Number(cartItem.actualPrice.slice(1)) -
-  //         Number(cartItem.actualPrice.slice(1)) *
-  //           (Number(cartItem.discountPercentage.slice(0, 2)) / 100),
-  //     };
-  //   });
-
-  //   this.totalPriceArr.forEach((course: any) => {
-  //     this.totalPrice += course.priceAfterDiscount;
-  //   });
-
-  //   console.log(this.totalPrice);
-  //   console.log(this.totalPriceArr);
-  // }
 
   ngOnInit(): void {
     this.cartService
@@ -66,33 +50,9 @@ export class CartComponent implements OnInit {
     });
     this.totalSaving = this.totalActualPrice - this.totalPrice;
 
-    console.log(this.totalPrice);
-    console.log(this.totalPriceArr);
+    // console.log(this.totalPrice);
+    // console.log(this.totalPriceArr);
   }
-
-  // recieveCartItemId(id: string) {
-  //   this.totalPriceArr = this.totalPriceArr.filter(
-  //     (course: any) => course.id === id
-  //   );
-  //   // .map((cartItem: any) => {
-  //   //   return {
-  //   //     actualPrice: Number(cartItem.actualPrice.slice(1)),
-  //   //     discount: Number(cartItem.discountPercentage.slice(0, 2)) / 100,
-  //   //     priceAfterDiscount:
-  //   //       Number(cartItem.actualPrice.slice(1)) -
-  //   //       Number(cartItem.actualPrice.slice(1)) *
-  //   //         (Number(cartItem.discountPercentage.slice(0, 2)) / 100),
-  //   //   };
-  //   // });
-
-  //   console.log(this.totalPriceArr);
-
-  //   // this.totalPriceArr.forEach((course: any) => {
-  //   this.totalPrice =
-  //     this.totalPrice - this.totalPriceArr[0].priceAfterDiscount;
-  //   // });
-  //   console.log(this.totalPrice);
-  // }
 
   clearCart() {
     const modalRef = this.modalService.open(ModalComponent);
@@ -104,7 +64,7 @@ export class CartComponent implements OnInit {
         this.cartService.setCartItems([]);
         this.router.navigate(['/']);
       } else {
-        console.log(`HEllo`);
+        // console.log(`Cancelled`);
       }
     });
   }

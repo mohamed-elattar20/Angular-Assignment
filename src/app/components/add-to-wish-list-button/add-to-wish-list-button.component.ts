@@ -35,7 +35,7 @@ export class AddToWishListButtonComponent implements OnInit {
       this.favorite = true;
     }
     this.wishListService.setCoursesArray(this.coursesMap);
-    console.log(this.coursesMap);
-    console.log(this.favorite);
+    // console.log(this.coursesMap);
+    // console.log(this.favorite);
   }
 }

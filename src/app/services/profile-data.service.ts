@@ -14,7 +14,7 @@ export class ProfileDataService {
     return this.profileData.asObservable();
   }
 
-  setProfileData(newProfileData: any) {
+  setProfileData(newProfileData: UserData) {
     this.profileData.next(newProfileData);
   }
 }

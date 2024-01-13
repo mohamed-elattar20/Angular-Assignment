@@ -16,7 +16,7 @@ export class AddToCartButtonComponent implements OnInit {
   ) {}
   faCartPlus = faCartPlus;
   cartItemsServiceArr = [];
-  cartItems: any = [];
+  cartItems: Icourses[] = [];
 
   @Input() courseItem!: Icourses;
 
@@ -29,11 +29,10 @@ export class AddToCartButtonComponent implements OnInit {
   addToCart(courseItemData: Icourses) {
     // console.log(courseItemData);
     if (courseItemData) {
-      const foundedCourse: any = this.cartItems.find(
+      const foundedCourse: Icourses | undefined = this.cartItems.find(
         (course: Icourses) => course.courseName === courseItemData.courseName
       );
       if (foundedCourse) {
-        // foundedCourse.quantity += 1;
         this.toast.warning(
           `${foundedCourse.courseName} Already exists in the cart`,
           {
@@ -43,7 +42,7 @@ export class AddToCartButtonComponent implements OnInit {
         // console.log(this.cartItems);
       } else {
         this.cartItems.push({ ...courseItemData });
-        console.log(this.cartItems);
+        // console.log(this.cartItems);
 
         this.cartService.setCartItems(this.cartItems);
         this.toast.success('Course successfully added in the cart', {

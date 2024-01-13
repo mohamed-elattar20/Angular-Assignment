@@ -20,7 +20,7 @@ export class CoursesListComponent implements OnInit {
     this.coursesService.getCourses().subscribe((data: Icourses[]) => {
       this.courses = data;
       this.finalCoursesArr = this.courses;
-      console.log(this.courses);
+      // console.log(this.courses);
     });
   }
 
@@ -41,7 +41,7 @@ export class CoursesListComponent implements OnInit {
 
   resetCoursesArr() {
     this.finalCoursesArr = this.courses;
-    console.log(this.finalCoursesArr);
+    // console.log(this.finalCoursesArr);
   }
 
   handleSort() {

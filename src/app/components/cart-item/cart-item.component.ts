@@ -40,10 +40,10 @@ export class CartItemComponent {
 
   deleteCourse(courseId: string) {
     this.cartItemId.emit(courseId);
-    console.log(courseId);
+    // console.log(courseId);
     this.cartArr = this.cartArr.filter((course: any) => course.id !== courseId);
     this.cartService.setCartItems(this.cartArr);
-    console.log(this.cartArr);
+    // console.log(this.cartArr);
     this.toast.success(`Course Successfully removed from cart`, {
       duration: 3000,
     });
@@ -66,7 +66,7 @@ export class CartItemComponent {
       });
       this.deleteCourse(this.cartItem.id);
     }
-    console.log(this.coursesMap);
-    console.log(this.favorite);
+    // console.log(this.coursesMap);
+    // console.log(this.favorite);
   }
 }

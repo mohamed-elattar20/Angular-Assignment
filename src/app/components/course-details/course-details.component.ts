@@ -24,7 +24,7 @@ export class CourseDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.calculateHoursRemaining();
     // console.log(this.courseId);
-    console.log(this.courseObj);
+    // console.log(this.courseObj);
 
     this.coursesService.getCourses().subscribe((data) => {
       // console.log(data);
@@ -40,9 +40,10 @@ export class CourseDetailsComponent implements OnInit {
         }
       });
 
-      console.log(this.datesArr);
+      // console.log(this.datesArr);
     });
-    console.log(this.courseObj);
+
+    // console.log(this.courseObj);
     this.discountPrice =
       Number(this.courseObj.actualPrice.slice(1)) -
       Number(this.courseObj.actualPrice.slice(1)) *
@@ -50,18 +51,14 @@ export class CourseDetailsComponent implements OnInit {
   }
 
   calculateHoursRemaining() {
-    // Get the current date and time
     const now = new Date();
 
-    // Set the date for tomorrow
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 4);
-    tomorrow.setHours(0, 0, 0, 0); // Set time to midnight
+    const newData = new Date();
+    newData.setDate(newData.getDate() + 4);
+    newData.setHours(0, 0, 0, 0);
 
-    // Calculate the difference in milliseconds
-    const differenceInMilliseconds = tomorrow.getTime() - now.getTime();
+    const differenceInMilliseconds = newData.getTime() - now.getTime();
 
-    // Convert milliseconds to hours
     this.hoursRemaining = Math.floor(
       differenceInMilliseconds / (1000 * 60 * 60)
     );

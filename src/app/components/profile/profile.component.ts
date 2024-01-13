@@ -41,7 +41,7 @@ export class ProfileComponent implements OnInit {
   }
   ngOnInit(): void {
     this.profileDataService.getProfileData().subscribe((data: UserData) => {
-      console.log(data);
+      // console.log(data);
       this.displayName = data.displayName;
       this.profileForm.patchValue(data);
     });
@@ -67,13 +67,12 @@ export class ProfileComponent implements OnInit {
     const reader = new FileReader();
 
     reader.onload = (e) => {
-      this.selectedImage = e.target?.result; // Assign image data to property
+      this.selectedImage = e.target?.result;
     };
 
     reader.readAsDataURL(file);
 
-    console.log(this.selectedImage);
-    // Read file as a data URL
+    // console.log(this.selectedImage);
   }
 
   setIsProfessional() {
@@ -105,9 +104,5 @@ export class ProfileComponent implements OnInit {
     });
     this.isProfessional = false;
     this.profileForm.reset();
-  }
-
-  log() {
-    // console.log(this.selectedInterest);
   }
 }

@@ -8,7 +8,7 @@ import { Icourses } from '../interfaces/icourses';
 export class CoursesService {
   constructor() {}
 
-  courses = new BehaviorSubject<any>(
+  private courses = new BehaviorSubject<any>(
     Array.from(courses).map((course) => ({
       ...course,
       id: crypto.randomUUID(),
