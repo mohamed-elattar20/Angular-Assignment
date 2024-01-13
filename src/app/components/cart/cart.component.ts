@@ -24,25 +24,25 @@ export class CartComponent implements OnInit {
     private toast: HotToastService
   ) {}
 
-  ngDoChanges(): void {
-    this.totalPriceArr = this.cartItems.map((cartItem: any) => {
-      return {
-        actualPrice: Number(cartItem.actualPrice.slice(1)),
-        discount: Number(cartItem.discountPercentage.slice(0, 2)) / 100,
-        priceAfterDiscount:
-          Number(cartItem.actualPrice.slice(1)) -
-          Number(cartItem.actualPrice.slice(1)) *
-            (Number(cartItem.discountPercentage.slice(0, 2)) / 100),
-      };
-    });
+  // ngDoChanges(): void {
+  //   this.totalPriceArr = this.cartItems.map((cartItem: any) => {
+  //     return {
+  //       actualPrice: Number(cartItem.actualPrice.slice(1)),
+  //       discount: Number(cartItem.discountPercentage.slice(0, 2)) / 100,
+  //       priceAfterDiscount:
+  //         Number(cartItem.actualPrice.slice(1)) -
+  //         Number(cartItem.actualPrice.slice(1)) *
+  //           (Number(cartItem.discountPercentage.slice(0, 2)) / 100),
+  //     };
+  //   });
 
-    this.totalPriceArr.forEach((course: any) => {
-      this.totalPrice += course.priceAfterDiscount;
-    });
+  //   this.totalPriceArr.forEach((course: any) => {
+  //     this.totalPrice += course.priceAfterDiscount;
+  //   });
 
-    console.log(this.totalPrice);
-    console.log(this.totalPriceArr);
-  }
+  //   console.log(this.totalPrice);
+  //   console.log(this.totalPriceArr);
+  // }
 
   ngOnInit(): void {
     this.cartService

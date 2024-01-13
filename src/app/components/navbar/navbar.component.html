@@ -30,7 +30,7 @@
             [routerLinkActiveOptions]="{ exact: true }"
             routerLink="wish-list"
             type="button"
-            class="nav-link btn position-relative"
+            class="nav-link btn position-relative text-start"
           >
             Wish List
             <span
@@ -38,10 +38,6 @@
               class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
             >
               {{ WishList.size }}
-              <!--  -->
-              <!--  -->
-              <!--  -->
-              <span class="visually-hidden">unread messages</span>
             </span>
           </a>
         </li>
@@ -60,7 +56,7 @@
             [routerLinkActiveOptions]="{ exact: true }"
             routerLink="cart"
             type="button"
-            class="nav-link btn position-relative"
+            class="nav-link btn position-relative text-start"
           >
             Cart
             <span
@@ -68,7 +64,6 @@
               class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
             >
               {{ cartLength }}
-              <span class="visually-hidden">unread messages</span>
             </span>
           </a>
         </li>

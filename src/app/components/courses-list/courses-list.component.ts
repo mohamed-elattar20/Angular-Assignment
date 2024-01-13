@@ -28,9 +28,13 @@ export class CoursesListComponent implements OnInit {
     if (this.searchInput) {
       this.finalCoursesArr = this.courses.filter(
         (course) =>
-          course.courseName.includes(this.searchInput) ||
-          course.author.includes(this.searchInput) ||
-          course.tags.includes(this.searchInput)
+          course.courseName
+            .toLowerCase()
+            .includes(this.searchInput.toLowerCase()) ||
+          course.author
+            .toLowerCase()
+            .includes(this.searchInput.toLowerCase()) ||
+          course.tags.includes(this.searchInput.toLowerCase())
       );
     }
   }
@@ -64,18 +68,4 @@ export class CoursesListComponent implements OnInit {
       );
     }
   }
-  // handleSort() {
-  //   if (this.sortInput === 'desc') {
-  //     this.finalCoursesArr.sort(
-  //       (a, b) =>
-  //         Number(a.actualPrice.slice(1)) - Number(b.actualPrice.slice(1))
-  //     );
-  //   }
-  //   if (this.sortInput === 'asc') {
-  //     this.finalCoursesArr.sort(
-  //       (a, b) =>
-  //         Number(b.actualPrice.slice(1)) - Number(a.actualPrice.slice(1))
-  //     );
-  //   }
-  // }
 }

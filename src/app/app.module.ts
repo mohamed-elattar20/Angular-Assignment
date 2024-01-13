@@ -15,10 +15,12 @@ import { CourseItemComponent } from './components/course-item/course-item.compon
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AddToCartButtonComponent } from './components/add-to-cart-button/add-to-cart-button.component';
 import { CartItemComponent } from './components/cart-item/cart-item.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Toaster
 import { HotToastModule } from '@ngneat/hot-toast';
+import { NgSelectModule } from '@ng-select/ng-select';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +46,8 @@ import { HotToastModule } from '@ngneat/hot-toast';
     FormsModule,
     HotToastModule.forRoot(),
     NgbModule,
+    NgSelectModule,
+    ReactiveFormsModule,
   ],
   providers: [provideHotToastConfig()],
   bootstrap: [AppComponent],

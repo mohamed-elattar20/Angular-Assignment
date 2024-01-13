@@ -1,5 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&display=swap");
+/* @import "~@ng-select/ng-select/themes/material.theme.css"; */
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
 * {
   font-family: "Montserrat", sans-serif;
+}
+
+.ng-select .ng-select-container {
+  background-color: #f0f0f0;
+  border-color: #ccc;
 }

@@ -1,1 +1,275 @@
-<p>profile works!</p>
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-3 mb-3">
+      <img
+        style="width: 150px; height: 150px"
+        *ngIf="selectedImage"
+        [src]="selectedImage"
+        alt="avatar"
+        class="rounded-circle"
+      />
+
+      <img
+        *ngIf="!selectedImage"
+        style="width: 150px"
+        class="rounded-circle"
+        src="https://tse1.mm.bing.net/th?id=OIP.Ghae4OEdb4UmC3hkqpFvLAHaGd&pid=Api&P=0&h=220"
+        alt="avatar"
+      />
+      <p class="fw-bold mt-2 lead">{{ displayName }}</p>
+      <input
+        type="file"
+        (change)="onFileSelected($event)"
+        formControlName="image"
+        class="btn"
+        hidden
+        #fileRef
+      />
+      <button (click)="openInputFile()" class="btn btn-primary mt-3">
+        Upload your photo
+      </button>
+    </div>
+    <div class="col-12 col-sm-9">
+      <form [formGroup]="profileForm" (ngSubmit)="handleSubmit()">
+        <div class="mb-3">
+          <label for="exampleInputDisplayName" class="form-label"
+            >Display name</label
+          >
+          <input
+            type="text"
+            [ngClass]="{
+              'is-invalid':
+                profileForm.controls['displayName'].touched &&
+                profileForm.controls['displayName'].invalid,
+              'is-valid': !profileForm.controls['displayName'].invalid
+            }"
+            class="form-control"
+            id="exampleInputDisplayName"
+            aria-describedby="emailHelp"
+            formControlName="displayName"
+          />
+          <div
+            class="mt-1"
+            *ngIf="
+              profileForm.controls['displayName'].touched &&
+              profileForm.controls['displayName'].invalid
+            "
+          >
+            <span
+              class="text-danger"
+              *ngIf=" profileForm.controls['displayName'].errors?.['required']"
+            >
+              Display Name is Req</span
+            >
+          </div>
+        </div>
+        <div class="d-flex justify-content-between gap-3">
+          <div class="mb-3 w-50">
+            <label for="exampleInputFirstName" class="form-label"
+              >First Name</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="exampleInputFirstName"
+              aria-describedby="firstNameHelp"
+              formControlName="firstName"
+              [ngClass]="{
+                'is-invalid':
+                  profileForm.controls['firstName'].touched &&
+                  profileForm.controls['firstName'].invalid,
+                'is-valid': !profileForm.controls['firstName'].invalid
+              }"
+            />
+            <div
+              class="mt-1"
+              *ngIf="
+                profileForm.controls['firstName'].touched &&
+                profileForm.controls['firstName'].invalid
+              "
+            >
+              <span
+                class="text-danger"
+                *ngIf=" profileForm.controls['firstName'].errors?.['required']"
+              >
+                First Name is Req</span
+              >
+            </div>
+          </div>
+          <div class="mb-3 w-50">
+            <label for="exampleInputLastName" class="form-label"
+              >Last Name</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="exampleInputLastName"
+              aria-describedby="lastNameHelp"
+              formControlName="lastName"
+              [ngClass]="{
+                'is-valid': profileForm.controls['lastName'].value
+              }"
+            />
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label"
+            >About yourself</label
+          >
+          <textarea
+            class="form-control"
+            id="exampleFormControlTextarea1"
+            rows="3"
+            formControlName="about"
+            [ngClass]="{
+              'is-invalid': profileForm.controls['about'].invalid,
+              'is-valid': profileForm.controls['about'].value
+            }"
+          ></textarea>
+          <div class="mt-1" *ngIf="profileForm.controls['about'].invalid">
+            <span
+              class="text-danger"
+              *ngIf="profileForm.controls['about'].invalid"
+            >
+              Max Length is 100</span
+            >
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label"
+            >Interestes</label
+          >
+          <ng-select
+            class="rounded-3"
+            placeholder="Select interestes"
+            [multiple]="true"
+            [items]="interests"
+            bindLabel="name"
+            bindValue="id"
+            [(ngModel)]="selectedInterest"
+            (change)="log()"
+            formControlName="interest"
+          >
+          </ng-select>
+        </div>
+        <div class="mb-3">
+          <p class="form-label my-2 m-0">
+            Are you a student or a professional?
+          </p>
+          <input
+            value="student"
+            type="radio"
+            name="role"
+            formControlName="role"
+            id="student"
+            [(ngModel)]="isProfessionalInput"
+            (change)="setIsProfessional()"
+          />
+          <label for="student" class="form-label ms-3 align-items-center my-0"
+            >Student</label
+          >
+          <input
+            value="professional"
+            type="radio"
+            class="ms-4"
+            name="role"
+            formControlName="role"
+            id="professional"
+            [(ngModel)]="isProfessionalInput"
+            (change)="setIsProfessional()"
+          />
+          <label
+            for="professional"
+            class="form-label ms-3 align-items-center my-0"
+            >professional</label
+          >
+        </div>
+
+        <!--  -->
+        <div *ngIf="isProfessional" class="mb-3">
+          <p class="form-label my-2 m-0">Experience</p>
+
+          <input
+            value="0-5"
+            type="radio"
+            name="experience"
+            formControlName="experience"
+            id="0-5"
+          />
+          <label for="0-5" class="form-label ms-3 align-items-center my-0"
+            >0-5</label
+          >
+
+          <!--  -->
+          <input
+            value="5-10"
+            type="radio"
+            class="ms-4"
+            name="experience"
+            formControlName="experience"
+            id="5-10"
+          />
+          <label for="5-10" class="form-label ms-3 align-items-center my-0"
+            >5-10</label
+          >
+          <input
+            value="+10"
+            type="radio"
+            class="ms-4"
+            name="experience"
+            formControlName="experience"
+            id="+10"
+          />
+          <label for="+10" class="form-label ms-3 align-items-center my-0"
+            >10 & above</label
+          >
+        </div>
+        <div *ngIf="isProfessional" class="mb-3">
+          <p class="form-label my-2 m-0">Expertise</p>
+
+          <select
+            formControlName="expertise"
+            class="form-select"
+            aria-label="Default select example"
+          >
+            <option selected>Open this select menu</option>
+            <option value="backend">Backend</option>
+            <option value="frontend">Front end</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label"
+            >Mention your role</label
+          >
+          <textarea
+            class="form-control"
+            id="exampleFormControlTextarea1"
+            rows="3"
+            formControlName="roleText"
+            [ngClass]="{
+              'is-invalid': profileForm.controls['roleText'].invalid,
+              'is-valid': profileForm.controls['roleText'].value
+            }"
+          ></textarea>
+          <div class="mt-1" *ngIf="profileForm.controls['roleText'].invalid">
+            <span
+              class="text-danger"
+              *ngIf="profileForm.controls['roleText'].invalid"
+            >
+              Max Length is 200</span
+            >
+          </div>
+        </div>
+
+        <button
+          [disabled]="profileForm.invalid"
+          type="submit"
+          class="btn btn-primary"
+        >
+          save
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
