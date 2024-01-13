@@ -6,8 +6,8 @@ import { Icourses } from '../interfaces/icourses';
   providedIn: 'root',
 })
 export class WishListService {
-  // private coursesArray = new BehaviorSubject<Map<string, Icourses>>(new Map());
-  private coursesArray = new BehaviorSubject<any>(new Map());
+  private coursesArray = new BehaviorSubject<Map<string, Icourses>>(new Map());
+  // private coursesArray = new BehaviorSubject<any>(new Map());
 
   constructor() {}
 

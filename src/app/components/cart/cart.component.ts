@@ -15,12 +15,15 @@ export class CartComponent implements OnInit {
   totalPriceArr!: any;
   cartItems!: Icourses[];
   totalPrice: number = 0;
+  totalSaving: number = 0;
+  totalActualPrice: number = 0;
   constructor(
     private cartService: CartService,
     private modalService: NgbModal,
     private router: Router,
     private toast: HotToastService
   ) {}
+
   ngDoChanges(): void {
     this.totalPriceArr = this.cartItems.map((cartItem: any) => {
       return {
@@ -41,23 +44,6 @@ export class CartComponent implements OnInit {
     console.log(this.totalPriceArr);
   }
 
-  ngOnChanges() {
-    this.totalPriceArr = this.cartItems.map((cartItem: any) => {
-      return {
-        actualPrice: Number(cartItem.actualPrice.slice(1)),
-        discount: Number(cartItem.discountPercentage.slice(0, 2)) / 100,
-        priceAfterDiscount:
-          Number(cartItem.actualPrice.slice(1)) -
-          Number(cartItem.actualPrice.slice(1)) *
-            (Number(cartItem.discountPercentage.slice(0, 2)) / 100),
-      };
-    });
-
-    this.totalPriceArr.forEach((course: any) => {
-      this.totalPrice += course.priceAfterDiscount;
-    });
-  }
-
   ngOnInit(): void {
     this.cartService
       .getCartItems()
@@ -76,7 +62,9 @@ export class CartComponent implements OnInit {
 
     this.totalPriceArr.forEach((course: any) => {
       this.totalPrice += course.priceAfterDiscount;
+      this.totalActualPrice += course.actualPrice;
     });
+    this.totalSaving = this.totalActualPrice - this.totalPrice;
 
     console.log(this.totalPrice);
     console.log(this.totalPriceArr);

@@ -21,6 +21,8 @@ export class AddToWishListButtonComponent implements OnInit {
     this.wishListService
       .getCoursesArray()
       .subscribe((data) => (this.coursesMap = data));
+    // console.log(this.coursesMap);
+
     this.favorite = this.coursesMap.has(this.courseData.id);
   }
 
@@ -32,6 +34,7 @@ export class AddToWishListButtonComponent implements OnInit {
       this.coursesMap.set(this.courseData.id, this.courseData);
       this.favorite = true;
     }
+    this.wishListService.setCoursesArray(this.coursesMap);
     console.log(this.coursesMap);
     console.log(this.favorite);
   }

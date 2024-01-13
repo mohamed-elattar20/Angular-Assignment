@@ -12,7 +12,7 @@ import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 export class NavbarComponent implements OnInit {
   faCartPlus = faCartPlus;
   cartLength!: number;
-  WishList!: Map<number, Icourses>;
+  WishList!: Map<string, Icourses>;
 
   constructor(
     private cartService: CartService,
